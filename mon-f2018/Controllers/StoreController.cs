@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+// reference Models namespace
+using mon_f2018.Models;
+
 namespace mon_f2018.Controllers
 {
     public class StoreController : Controller
@@ -15,9 +18,24 @@ namespace mon_f2018.Controllers
         }
 
         // GET: Store/Product
-        public ActionResult Product()
+        public ActionResult Product(string ProductName)
         {
+            ViewBag.ProductName = ProductName;
             return View();
+        }
+
+        // GET: Store/Albums
+        public ActionResult Albums()
+        {
+            // mock up some album data
+            var albums = new List<Album>();
+
+            for (int i = 1; i <= 10; i++)
+            {
+                albums.Add(new Album { Title = "Album " + i.ToString() });
+            }
+            
+            return View(albums);
         }
     }
 }
