@@ -10,6 +10,8 @@ using mon_f2018.Models;
 
 namespace mon_f2018.Controllers
 {
+
+    [Authorize(Roles = "Administrator")]
     public class AlbumsController : Controller
     {
         // automatically connects to the database
@@ -22,6 +24,7 @@ namespace mon_f2018.Controllers
             return View(albums.OrderBy(a => a.Artist.Name).ThenBy(a => a.Title).ToList());
         }
 
+        [AllowAnonymous]
         // GET: Albums/Details/5
         public ActionResult Details(int? id)
         {
