@@ -1,15 +1,21 @@
-﻿
+﻿@model IEnumerable<mon_f2018.Models.Genre>
+
 @{
-    ViewBag.Title = "Store";
+    ViewBag.Title = "Shop our Store";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>MVC Music Store</h2>
+<h2>Shop our Store</h2>
 
-<p>Welcome to our store.</p>
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 text-center well">
+            <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+            <a href="/store/albums?genre=@Html.DisplayFor(modelItem => item.Name)">
+                <button class="btn btn-primary">Shop Now</button>
+            </a>
+        </div>
+    }
+</div>
 
-<ul>
-    <li>@Html.ActionLink("Product One", "Product", "Store", new { ProductName = "Product One" }, new { @class = "text-danger" })</li>
-    <li>@Html.ActionLink("Product Two", "Product", "Store", new { ProductName = "Product Two" }, null)</li>
-    <li>@Html.ActionLink("Product Three", "Product", "Store", new { ProductName = "Product Three" }, null)</li>
-</ul>
