@@ -29,7 +29,9 @@
 
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Album.Title)
+            <a href="/Albums/Details/@item.AlbumId">
+                @Html.DisplayFor(modelItem => item.Album.Title)
+            </a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Count)
