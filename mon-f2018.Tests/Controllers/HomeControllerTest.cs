@@ -35,7 +35,7 @@ namespace mon_f2018.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("This is the about page", result.ViewBag.Message);
         }
 
         [TestMethod]
@@ -48,6 +48,19 @@ namespace mon_f2018.Tests.Controllers
             ViewResult result = controller.Contact() as ViewResult;
 
             // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void FAQ()
+        {
+            // arrange
+            HomeController controller = new HomeController();
+
+            // act
+            ViewResult result = controller.FAQ() as ViewResult;
+
+            // assert
             Assert.IsNotNull(result);
         }
     }
