@@ -40,21 +40,28 @@ namespace mon_f2018.Controllers
             return View("Index", albums);
         }
 
-        //[AllowAnonymous]
-        //// GET: Albums/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Album album = db.Albums.Find(id);
-        //    if (album == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(album);
-        //}
+        [AllowAnonymous]
+        // GET: Albums/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
+            }
+            // original find code
+            // Album album = db.Albums.Find(id);
+
+            // new code to work with both the db and the mock interface
+            Album album = db.Albums.SingleOrDefault(a => a.AlbumId == id);
+
+            if (album == null)
+            {
+                // return HttpNotFound();
+                return View("Error");
+            }
+            return View("Details", album);
+        }
 
         //// GET: Albums/Create
         //public ActionResult Create()

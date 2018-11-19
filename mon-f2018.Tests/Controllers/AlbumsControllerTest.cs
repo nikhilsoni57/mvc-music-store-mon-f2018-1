@@ -60,7 +60,47 @@ namespace mon_f2018.Tests.Controllers
             var actual = (List<Album>)((ViewResult) controller.Index()).Model;
 
             // assert
-            CollectionAssert.AreEqual(albums, actual);
+            CollectionAssert.AreEqual(albums.OrderBy(a => a.Artist.Name).ThenBy(a => a.Title).ToList(), actual);
+        }
+
+        [TestMethod]
+        public void DetailsNoId()
+        {
+            // act
+            var result = (ViewResult)controller.Details(null);
+
+            // assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DetailsInvalidId()
+        {
+            // act
+            var result = (ViewResult)controller.Details(67830);
+
+            // assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DetailsValidId()
+        {
+            // act - cast the model as an Album object
+            Album actual = (Album)((ViewResult)controller.Details(300)).Model;
+
+            // assert - is this the first mock album in our array?
+            Assert.AreEqual(albums[2], actual);
+        }
+
+        [TestMethod]
+        public void DetailsViewLoads()
+        {
+            // act
+            ViewResult result = (ViewResult)controller.Details(300);
+
+            // assert
+            Assert.AreEqual("Details", result.ViewName);
         }
     }
 }
