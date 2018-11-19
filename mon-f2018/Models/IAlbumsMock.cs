@@ -10,6 +10,7 @@ namespace mon_f2018.Models
     {
         IQueryable<Album> Albums { get; }
         IQueryable<Artist> Artists { get; }
+        IQueryable<Genre> Genres { get;  }
         Album Save(Album album);
         void Delete(Album album);
     }

@@ -102,5 +102,15 @@ namespace mon_f2018.Tests.Controllers
             // assert
             Assert.AreEqual("Details", result.ViewName);
         }
+
+        [TestMethod]
+        public void EditPostLoadsIndex()
+        {
+            // act
+            RedirectToRouteResult result = (RedirectToRouteResult)controller.Edit(albums[0]);
+
+            // assert
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
     }
 }

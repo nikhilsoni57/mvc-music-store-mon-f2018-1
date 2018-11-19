@@ -12,6 +12,7 @@ namespace mon_f2018.Models
 
         public IQueryable<Album> Albums { get { return db.Albums; } }
         public IQueryable<Artist> Artists { get { return db.Artists; } }
+        public IQueryable<Genre> Genres { get { return db.Genres; } }
 
         public void Delete(Album album)
         {
