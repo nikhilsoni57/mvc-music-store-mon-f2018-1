@@ -148,7 +148,7 @@ namespace mon_f2018.Controllers
         // POST: Albums/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
             //Album album = db.Albums.Find(id);
             //db.Albums.Remove(album);
